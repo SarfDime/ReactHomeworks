@@ -1,0 +1,184 @@
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.45rem;
+        border-radius: var(--radius);
+        border: 0.17rem solid var(--paleAccentTwo);
+        color: var(--paleAccentTwo);
+        transition: all .5s cubic-bezier(.19, 1, .22, 1);
+
+        &:hover {
+            background-color: var(--accent);
+            color: var(--priColor);
+        }
+    }
+
+    span {
+        font-weight: 650;
+        user-select: none;
+        pointer-events: none;
+        color: var(--accent);
+    }
+
+    .usersContainer {
+        // position: absolute;
+        // top: 1vmax;
+        // left: 1vmax;
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--radius);
+        margin-top: 1vmax;
+        padding: 1vmax;
+        border: 0.17rem solid var(--paleAccentTwo);
+
+        h2 {
+            margin-bottom: .5vmax;
+        }
+
+        .noUsers {
+            text-align: center;
+            margin-block: .5vmax 1vmax;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: var(--radius);
+            margin-block: .5vmax 1vmax;
+
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0;
+
+                    svg {
+                        fill: var(--accent);
+                        width: 1vmax;
+                        height: 1vmax;
+                        margin: .1vmax;
+                        transition: all .5s cubic-bezier(.19, 1, .22, 1);
+                    }
+
+                    &:hover{
+                        svg{
+                            fill: var(--priColor);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: var(--radius);
+        margin-top: 2vmax;
+        padding: 1vmax;
+        border: 0.17rem solid var(--paleAccentTwo);
+
+        h1,
+        button {
+            margin-block: 1vmax;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+
+    input {
+        text-indent: 1rem;
+        width: 14vmax;
+        height: 3vmax;
+        font-size: 1.1rem;
+        text-indent: .8rem;
+        background-color: var(--tpPri);
+        color: var(--secColor);
+        border: 0.15rem solid var(--paleAccent);
+        border-radius: var(--radius);
+        outline: none;
+        margin: 0.5rem;
+        transition: all .6s cubic-bezier(.19, 1, .22, 1);
+
+        &#agree {
+            background: none;
+            width: auto;
+            height: auto;
+        }
+
+        &::selection {
+            background: var(--accent);
+            color: var(--priColor);
+        }
+
+        &:invalid:not(:placeholder-shown) {
+            border-color: red;
+
+            ~ {
+                label {
+                    opacity: 1;
+                    color: var(--priColor);
+                    background: rgb(255, 50, 50);
+                    transform: translateY(-110%);
+                }
+            }
+        }
+
+        &:valid {
+            border-color: var(--accent);
+
+            ~ {
+                label {
+                    opacity: 1;
+                    color: var(--priColor);
+                    background: var(--accent);
+                    transform: translateY(-110%);
+                }
+            }
+        }
+
+        &:focus {
+            border: 0.15rem solid var(--accent);
+
+            ~ {
+                label {
+                    opacity: 1;
+                    color: var(--priColor);
+                    background: var(--accent);
+                    transform: translateY(var(--up));
+                    scale: 1.1;
+                }
+            }
+        }
+    }
+
+    label {
+        position: absolute;
+        pointer-events: none;
+        border-radius: 1rem;
+        padding-inline: 0.5rem;
+        transition: all .5s cubic-bezier(.19, 1, .22, 1);
+        opacity: 0.6;
+    }
+}

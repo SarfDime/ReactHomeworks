@@ -1,0 +1,9 @@
+.starWars{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.characterContainer{
+  border: 1px solid black;
+}

@@ -1,0 +1,49 @@
+:root {
+    --priColor: rgb(243, 243, 243);
+    --tpPri: rgba(255, 255, 255, .65);
+    --secColor: rgba(0, 0, 0, 0.822);
+    --tpSec: rgba(0, 0, 0, 0.2);
+    --accent: rgb(22, 154, 231);
+    --paleAccent: rgba(36, 98, 112, 0.229);
+    --paleAccentTwo: rgba(20, 138, 201, 0.598);
+    --up: -120%;
+    --radius: .3vmax
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --priColor: rgb(12, 12, 12);
+        --tpPri: rgba(0, 0, 0, .65);
+        --secColor: rgba(255, 255, 255, 0.822);
+        --tpSec: rgba(255, 255, 255, 0.2);
+        --accent: rgb(233, 123, 54);
+        --paleAccent: rgba(220, 157, 143, 0.229);
+        --paleAccentTwo: rgba(235, 117, 54, 0.598);
+    }
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+body {
+    position: relative;
+    font-family: 'Segoe UI', Calibri, Verdana, sans-serif;
+    background-color: var(--priColor);
+    color: var(--secColor);
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
