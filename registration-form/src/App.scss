@@ -30,9 +30,6 @@ main {
     }
 
     .usersContainer {
-        // position: absolute;
-        // top: 1vmax;
-        // left: 1vmax;
         display: flex;
         flex-direction: column;
         border-radius: var(--radius);

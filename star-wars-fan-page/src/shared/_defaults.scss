@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+
+body {
+    // position: relative;
+    // font-family: 'Segoe UI', Calibri, Verdana, sans-serif;
+    overflow: hidden;
+    // overflow-y: auto;
+}
+
+img {
+    image-rendering: crisp-edges;
+}
+
+a,
+span,
+button {
+    cursor: pointer;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+html {
+    height: 100%;
+    // overflow: hidden;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}

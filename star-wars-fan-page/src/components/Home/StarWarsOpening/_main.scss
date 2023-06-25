@@ -1,0 +1,150 @@
+.opening-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+
+    .title {
+        opacity: 0;
+        color: var(--accent);
+        text-align: center;
+        scale: 25;
+        font-family: 'Star Wars';
+        display: table-caption;
+        word-spacing: 9999rem;
+        line-height: 1.5rem;
+        transition: opacity 0.4s;
+        pointer-events: none;
+        user-select: none;
+        will-change: transform;
+    }
+
+    .farFarAway {
+        position: absolute;
+        width: 70%;
+        font-size: xx-large;
+        color: var(--accent);
+        pointer-events: none;
+        user-select: none;
+        will-change: transform;
+        perspective: 35vmax;
+
+        div {
+            top: 120vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            text-transform: uppercase;
+
+            :first-child {
+                margin-block: 1rem;
+                text-align: center;
+            }
+
+            :nth-child(2) {
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            p {
+                font-size: 1.5vw;
+                line-height: 2rem;
+                font-weight: bold;
+                text-align: justify;
+                word-spacing: 0.2rem;
+            }
+        }
+
+    }
+
+    .start {
+        position: absolute;
+        padding: 3rem;
+        top: 30%;
+        border-radius: .5rem;
+        transition: all .5s cubic-bezier(.19, 1, .22, 1);
+
+        color: var(--priColor);
+        font-size: large;
+        touch-action: manipulation;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            inset: -1rem;
+            position: absolute;
+            filter: blur(.5vmax);
+            background-image: linear-gradient(45deg,
+                    hsl(27deg 100% 24%) 0%,
+                    hsl(29deg 100% 25%) 3%,
+                    hsl(30deg 100% 26%) 6%,
+                    hsl(31deg 100% 27%) 9%,
+                    hsl(32deg 100% 29%) 13%,
+                    hsl(34deg 100% 30%) 16%,
+                    hsl(35deg 100% 31%) 20%,
+                    hsl(36deg 100% 32%) 24%,
+                    hsl(38deg 100% 34%) 28%,
+                    hsl(39deg 100% 35%) 32%,
+                    hsl(40deg 100% 36%) 36%,
+                    hsl(42deg 100% 37%) 40%,
+                    hsl(43deg 100% 39%) 44%,
+                    hsl(44deg 100% 40%) 48%,
+                    hsl(46deg 100% 41%) 53%,
+                    hsl(47deg 100% 42%) 57%,
+                    hsl(48deg 100% 44%) 62%,
+                    hsl(50deg 100% 45%) 67%,
+                    hsl(51deg 100% 46%) 72%,
+                    hsl(52deg 100% 47%) 78%,
+                    hsl(54deg 100% 49%) 85%,
+                    hsl(55deg 100% 50%) 96%);
+            z-index: -1;
+        }
+
+        &:hover {
+            background-color: var(--priColor);
+            color: var(--secColor);
+        }
+
+        &:active {
+            background-color: var(--paleAccentThree);
+            color: var(--secColor);
+            scale: 0.9;
+        }
+    }
+
+    .disabled {
+        opacity: 0;
+    }
+
+    @keyframes titleAnimation {
+        0% {
+            scale: 25;
+        }
+
+        10% {
+            scale: 23;
+        }
+
+        30% {
+            scale: 18;
+        }
+
+        100% {
+            scale: 0;
+        }
+    }
+
+    @keyframes crawlAnimation {
+        from {
+            top: 120vh;
+            transform: rotateX(25deg) translateZ(0);
+        }
+
+        to {
+            top: -120vh;
+            transform: rotateX(25deg) translateZ(-30vh);
+        }
+    }
+}
