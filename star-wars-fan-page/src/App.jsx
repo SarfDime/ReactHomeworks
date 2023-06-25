@@ -19,7 +19,7 @@ export default function App() {
     <>
       <BrowserRouter>
         <Header />
-          <SpaceBackground numberOfStars={250} />
+          <SpaceBackground numberOfStars={280} />
         <Routes>
           <Route path="/" element={<Home />} />
 

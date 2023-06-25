@@ -19,9 +19,11 @@
     fill: transparent;
     z-index: -1;
 
-    @include randomDelayAnimation($numberOfStars: 200, $animationName: twinkling, $animationDuration: 1.5s);
-    @include randomDelayAnimation($numberOfStars: 55, $animationName: moveStar, $animationDuration: 80s);
-    @include randomDelayAnimation($numberOfStars: 55, $animationName: rotateStar, $animationDuration: 700s);
+    @include randomDelayAnimation($numberOfStars: 230, $animationName: twinkling, $animationDuration: 1.5s);
+    @include randomDelayAnimation($numberOfStars: 50, $animationName: moveStarLeft, $animationDuration: 150s);
+    @include randomDelayAnimation($numberOfStars: 50, $animationName: rotateStarRight, $animationDuration: 800s);
+    @include randomDelayAnimation($numberOfStars: 50, $animationName: moveStarRight, $animationDuration: 150s);
+    @include randomDelayAnimation($numberOfStars: 50, $animationName: rotateStarLeft, $animationDuration: 800s);
 
     .stars-scale {
         fill: #ffffff;
@@ -33,17 +35,36 @@
 
     }
 
-    @keyframes rotateStar {
+    @keyframes rotateStarLeft {
         0% {
             transform: rotate(0deg);
         }
 
-        100% {
+        50% {
             transform: rotate(360deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
         }
     }
 
-    @keyframes moveStar {
+    
+    @keyframes rotateStarRight {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(-360deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    @keyframes moveStarRight {
         0% {
             transform: scale(0.7);
         }
@@ -54,6 +75,20 @@
 
         100% {
             transform: scale(0.7);
+        }
+    }
+
+    @keyframes moveStarLeft {
+        0% {
+            transform: scale(1.7);
+        }
+
+        50% {
+            transform: scale(.1);
+        }
+
+        100% {
+            transform: scale(1.7);
         }
     }
 

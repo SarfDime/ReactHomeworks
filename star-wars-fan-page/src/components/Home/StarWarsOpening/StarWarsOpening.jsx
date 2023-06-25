@@ -1,52 +1,93 @@
 import React, { useRef, useState } from 'react'
 import soundFile from './sounds.mp3'
 
+let startTimeOut = null
+
 export function StarWarsOpening() {
     const [audio] = useState(new Audio(soundFile))
-    const [isPlaying, setIsPlaying] = useState(false)
 
-    const animatedElementRef = useRef(null)
+    const animatedTitleRef = useRef(null)
     const buttonRef = useRef(null)
+    const skipButtonRef = useRef(null)
     const animatedText = useRef(null)
 
-    const handleButtonClick = () => {
-        const element = animatedElementRef.current
+
+    const startOpening = () => {
+        const title = animatedTitleRef.current
         const text = animatedText.current
         const button = buttonRef.current
+        const skipButton = skipButtonRef.current
+
         button.classList.add("disabled")
         button.disabled = true
 
-        setTimeout(() => {
-            element.style.opacity = 1
-            setTimeout(() => { playSound() }, 200)
+        startTimeOut = setTimeout(() => {
+            title.style.opacity = 1
+            skipButton.classList.remove("disabled")
+
             setTimeout(() => {
-                element.style.animation = 'titleAnimation 7s linear forwards'
-                setTimeout(() => {
-                    text.style.animation = 'crawlAnimation 60s linear forwards'
+                playSound()
+                button.style.display = "none"
+            }, 200)
+            setTimeout(() => {
+                title.style.animation = 'titleAnimation 9s linear forwards'
+                    text.style.animation = 'crawlAnimation 50s linear forwards'
                     setTimeout(() => {
                         text.style.display = 'none'
                         stopSound()
                     }, 70000)
-                }, 400)
+                    setTimeout(() => {
+                        skipButton.classList.add("disabled")
+                        skipButton.disabled = true
+                        setTimeout(() => {
+                            skipButton.style.display = "none"
+                        }, 300)
+                        stopSound()
+                    }, 65000)
             }, 400)
         }, 2000)
     }
 
+    const stopOpening = () => {
+        clearTimeout(startTimeOut)
+        const title = animatedTitleRef.current
+        const text = animatedText.current
+        const skipButton = skipButtonRef.current
+
+        const button = buttonRef.current
+        button.style.display = "none"
+
+        skipButton.classList.add("disabled")
+        skipButton.disabled = true
+        setTimeout(() => {
+            skipButton.style.display = "none"
+        }, 300)
+
+        title.style.animation = 'none'
+        title.style.display = 'none'
+        text.style.animation = 'none'
+        text.style.display = 'none'
+        stopSound()
+    }
+
     const playSound = () => {
         audio.play()
-        setIsPlaying(true)
     }
 
     const stopSound = () => {
         audio.pause()
         audio.currentTime = 0
-        setIsPlaying(false)
     }
 
     return (
         <div className="opening-container">
-            <button ref={buttonRef} onClick={handleButtonClick} className='start'><h1>CLICK TO START</h1></button>
-            <h1 ref={animatedElementRef} className='title'>STAR WARS</h1>
+            <button ref={buttonRef} onClick={startOpening} className="start">
+                <h1>CLICK TO START</h1>
+            </button>
+            <button ref={skipButtonRef} onClick={stopOpening} className="skip disabled">
+                skip intro
+            </button>
+            <h1 ref={animatedTitleRef} className='title'>STAR WARS</h1>
             <div className='farFarAway'>
                 <div ref={animatedText} className="text">
                     <h2>EPISODE IV.V - THE REACT AWAKENS</h2>
@@ -72,6 +113,5 @@ export function StarWarsOpening() {
                 </div>
             </div>
         </div>
-    );
-};
-
+    )
+}

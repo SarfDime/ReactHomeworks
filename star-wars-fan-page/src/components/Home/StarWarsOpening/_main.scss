@@ -1,3 +1,5 @@
+@use '../../../shared/colors' as *;
+
 .opening-container {
     display: flex;
     align-items: center;
@@ -7,7 +9,7 @@
 
     .title {
         opacity: 0;
-        color: var(--accent);
+        color: $accent;
         text-align: center;
         scale: 25;
         font-family: 'Star Wars';
@@ -22,9 +24,9 @@
 
     .farFarAway {
         position: absolute;
-        width: 70%;
+        width: 60%;
         font-size: xx-large;
-        color: var(--accent);
+        color: $accent;
         pointer-events: none;
         user-select: none;
         will-change: transform;
@@ -37,6 +39,7 @@
             flex-direction: column;
             gap: 2.5rem;
             text-transform: uppercase;
+            margin-top: 50%;
 
             :first-child {
                 margin-block: 1rem;
@@ -59,63 +62,108 @@
 
     }
 
-    .start {
+    button {
         position: absolute;
-        padding: 3rem;
-        top: 30%;
-        border-radius: .5rem;
-        transition: all .5s cubic-bezier(.19, 1, .22, 1);
-
-        color: var(--priColor);
+        color: $tpSec;
         font-size: large;
         touch-action: manipulation;
         overflow: hidden;
+        transition: all .5s cubic-bezier(.19, 1, .22, 1);
 
         &::before {
             content: '';
             inset: -1rem;
             position: absolute;
             filter: blur(.5vmax);
-            background-image: linear-gradient(45deg,
-                    hsl(27deg 100% 24%) 0%,
-                    hsl(29deg 100% 25%) 3%,
-                    hsl(30deg 100% 26%) 6%,
-                    hsl(31deg 100% 27%) 9%,
-                    hsl(32deg 100% 29%) 13%,
-                    hsl(34deg 100% 30%) 16%,
-                    hsl(35deg 100% 31%) 20%,
-                    hsl(36deg 100% 32%) 24%,
-                    hsl(38deg 100% 34%) 28%,
-                    hsl(39deg 100% 35%) 32%,
-                    hsl(40deg 100% 36%) 36%,
-                    hsl(42deg 100% 37%) 40%,
-                    hsl(43deg 100% 39%) 44%,
-                    hsl(44deg 100% 40%) 48%,
-                    hsl(46deg 100% 41%) 53%,
-                    hsl(47deg 100% 42%) 57%,
-                    hsl(48deg 100% 44%) 62%,
-                    hsl(50deg 100% 45%) 67%,
-                    hsl(51deg 100% 46%) 72%,
-                    hsl(52deg 100% 47%) 78%,
-                    hsl(54deg 100% 49%) 85%,
-                    hsl(55deg 100% 50%) 96%);
             z-index: -1;
         }
 
         &:hover {
-            background-color: var(--priColor);
-            color: var(--secColor);
+            background-color: $priColor;
+            color: $secColor;
         }
 
         &:active {
             background-color: var(--paleAccentThree);
-            color: var(--secColor);
+            color: $secColor;
             scale: 0.9;
+        }
+    }
+
+    .skip {
+        z-index: 3;
+        right: 3rem;
+        top: 3rem;
+        padding: .5rem;
+        border-radius: .3rem;
+
+        &::before {
+            background-image: linear-gradient(-45deg,
+                    hsla(27, 100%, 24%, 0.9) 0%,
+                    hsla(29, 100%, 25%, 0.8) 3%,
+                    hsla(30, 100%, 26%, 0.8) 6%,
+                    hsla(31, 100%, 27%, 0.7) 9%,
+                    hsla(32, 100%, 29%, 0.6) 13%,
+                    hsl(34, 100%, 30%, 0.6) 16%,
+                    hsl(35, 100%, 31%, 0.6) 20%,
+                    hsla(36deg, 100%, 32%, 0.5),
+                    hsla(38deg, 100%, 34%, 0.5),
+                    hsla(39deg, 100%, 35%, 0.5),
+                    hsla(40deg, 100%, 36%, 0.5),
+                    hsla(42deg, 100%, 37%, 0.5),
+                    hsla(43deg, 100%, 39%, 0.6),
+                    hsla(44deg, 100%, 40%, 0.6),
+                    hsla(46deg, 100%, 41%, 0.6),
+                    hsla(47deg, 100%, 42%, 0.6),
+                    hsla(48deg, 100%, 44%, 0.7),
+                    hsla(50deg, 100%, 45%, 0.7),
+                    hsla(51deg, 100%, 46%, 0.7),
+                    hsla(52deg, 100%, 47%, 0.8),
+                    hsla(54deg, 100%, 49%, 0.8),
+                    hsla(55deg, 100%, 50%, 0.8));
+                    z-index: -1;
+        }
+    }
+
+    .start {
+        position: absolute;
+        padding: 2rem;
+        border-radius: .5rem;
+        top: 30%;
+        transition: all .5s cubic-bezier(.19, 1, .22, 1);
+
+
+        &::before {
+            background-image: linear-gradient(45deg,
+                    hsla(27, 100%, 24%, 0.9) 0%,
+                    hsla(29, 100%, 25%, 0.8) 3%,
+                    hsla(30, 100%, 26%, 0.8) 6%,
+                    hsla(31, 100%, 27%, 0.7) 9%,
+                    hsla(32, 100%, 29%, 0.6) 13%,
+                    hsl(34, 100%, 30%, 0.6) 16%,
+                    hsl(35, 100%, 31%, 0.6) 20%,
+                    hsla(36deg, 100%, 32%, 0.5),
+                    hsla(38deg, 100%, 34%, 0.5),
+                    hsla(39deg, 100%, 35%, 0.5),
+                    hsla(40deg, 100%, 36%, 0.5),
+                    hsla(42deg, 100%, 37%, 0.5),
+                    hsla(43deg, 100%, 39%, 0.6),
+                    hsla(44deg, 100%, 40%, 0.6),
+                    hsla(46deg, 100%, 41%, 0.6),
+                    hsla(47deg, 100%, 42%, 0.6),
+                    hsla(48deg, 100%, 44%, 0.7),
+                    hsla(50deg, 100%, 45%, 0.7),
+                    hsla(51deg, 100%, 46%, 0.7),
+                    hsla(52deg, 100%, 47%, 0.8),
+                    hsla(54deg, 100%, 49%, 0.8),
+                    hsla(55deg, 100%, 50%, 0.8));
         }
     }
 
     .disabled {
         opacity: 0;
+        pointer-events: none;
+        user-select: none;
     }
 
     @keyframes titleAnimation {
@@ -139,12 +187,13 @@
     @keyframes crawlAnimation {
         from {
             top: 120vh;
-            transform: rotateX(25deg) translateZ(0);
+            transform: rotateX(25deg);
         }
 
         to {
             top: -120vh;
             transform: rotateX(25deg) translateZ(-30vh);
+            margin-top: 0%;
         }
     }
 }
