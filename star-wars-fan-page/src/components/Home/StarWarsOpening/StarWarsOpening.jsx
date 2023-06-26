@@ -1,16 +1,32 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import soundFile from './sounds.mp3'
+import HomePlanets from '../HomePlanets/HomePlanets'
+import HomeCharacters from '../HomeCharacters/HomeCharacters'
 
 let startTimeOut = null
 
 export function StarWarsOpening() {
     const [audio] = useState(new Audio(soundFile))
+    const [planetsAreDone, setPlanetsAreDone] = useState(false)
+    const [charactersAreDone, setCharactersAreDone] = useState(false)
+    const [readyToAnimate, setReadyToAnimate] = useState(false)
+    const [intoIsDone, setIntroIsDone] = useState(false)
 
     const animatedTitleRef = useRef(null)
     const buttonRef = useRef(null)
     const skipButtonRef = useRef(null)
     const animatedText = useRef(null)
 
+    useEffect(() => {
+        if (!planetsAreDone || !charactersAreDone) return console.log('planets done: ' + planetsAreDone, 'characters done: ' + charactersAreDone)
+        console.log('planets done: ' + planetsAreDone, 'characters done: ' + charactersAreDone)
+        setReadyToAnimate(true)
+    }, [planetsAreDone, charactersAreDone])
+
+    useEffect(() => {
+        if (!readyToAnimate || !intoIsDone) return console.log('ready to animate: ' + readyToAnimate, 'intro is done: ' + intoIsDone)
+        console.log('ready to animate: ' + readyToAnimate, 'intro is done: ' + intoIsDone)
+    }, [readyToAnimate, intoIsDone])
 
     const startOpening = () => {
         const title = animatedTitleRef.current
@@ -30,20 +46,21 @@ export function StarWarsOpening() {
                 button.style.display = "none"
             }, 200)
             setTimeout(() => {
-                title.style.animation = 'titleAnimation 9s linear forwards'
-                    text.style.animation = 'crawlAnimation 50s linear forwards'
+                title.style.animation = 'titleAnimation 7s linear forwards'
+                text.style.animation = 'crawlAnimation 45s linear forwards'
+                setTimeout(() => {
+                    skipButton.classList.add("disabled")
+                    skipButton.disabled = true
                     setTimeout(() => {
-                        text.style.display = 'none'
-                        stopSound()
-                    }, 70000)
-                    setTimeout(() => {
-                        skipButton.classList.add("disabled")
-                        skipButton.disabled = true
-                        setTimeout(() => {
-                            skipButton.style.display = "none"
-                        }, 300)
-                        stopSound()
-                    }, 65000)
+                        skipButton.style.display = "none"
+                        setIntroIsDone(true)
+                    }, 300)
+                    stopSound()
+                }, 50000)
+                setTimeout(() => {
+                    text.style.display = 'none'
+                    stopSound()
+                }, 55000)
             }, 400)
         }, 2000)
     }
@@ -61,7 +78,8 @@ export function StarWarsOpening() {
         skipButton.disabled = true
         setTimeout(() => {
             skipButton.style.display = "none"
-        }, 300)
+            setIntroIsDone(true)
+        }, 500)
 
         title.style.animation = 'none'
         title.style.display = 'none'
@@ -81,10 +99,10 @@ export function StarWarsOpening() {
 
     return (
         <div className="opening-container">
-            <button ref={buttonRef} onClick={startOpening} className="start">
+            <button ref={buttonRef} onClick={startOpening} className="start introButtons">
                 <h1>CLICK TO START</h1>
             </button>
-            <button ref={skipButtonRef} onClick={stopOpening} className="skip disabled">
+            <button ref={skipButtonRef} onClick={stopOpening} className="skip introButtons disabled">
                 skip intro
             </button>
             <h1 ref={animatedTitleRef} className='title'>STAR WARS</h1>
@@ -111,6 +129,11 @@ export function StarWarsOpening() {
                         Find out in this epic saga of "Star Wars: Episode IV.V - The React Awakens," where the force of components meets the battle for beautiful UIs!
                     </p>
                 </div>
+            </div>
+
+            <div className='mainDataContainer'>
+                <HomePlanets apiDone={setPlanetsAreDone} />
+                <HomeCharacters apiDone={setCharactersAreDone} />
             </div>
         </div>
     )

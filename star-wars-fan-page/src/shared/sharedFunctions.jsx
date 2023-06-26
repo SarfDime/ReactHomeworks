@@ -1,4 +1,4 @@
-export default async function fetchApi(url) {
+export async function fetchApi(url) {
     try {
         const response = await fetch(url)
         const data = await response.json()
@@ -7,3 +7,4 @@ export default async function fetchApi(url) {
         console.error('Error fetching data:', error)
     }
 }
+

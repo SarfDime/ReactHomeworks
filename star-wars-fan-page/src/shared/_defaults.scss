@@ -10,6 +10,16 @@
     }
 }
 
+@font-face {
+    font-family: textFont;
+    src: url(../fonts/textFont.ttf);
+}
+
+@font-face {
+    font-family: titleFont;
+    src: url(../fonts/titleFont.ttf);
+}
+
 
 body {
     // position: relative;
@@ -34,7 +44,5 @@ button {
 }
 
 html {
-    height: 100%;
-    // overflow: hidden;
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }

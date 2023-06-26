@@ -1,11 +1,35 @@
-@mixin randomDelayAnimation($numberOfStars, $animationName, $animationDuration) {
+@mixin randomAnimation($numberOfStars) {
+    $twinkleCount: ceil($numberOfStars * 0.7); // 70% of stars for twinkle animation
+    $rotateLeftCount: ceil($numberOfStars * 0.15); // 15% of stars for rotateLeft animation
+    $rotateRightCount: ceil($numberOfStars * 0.15); // 15% of stars for rotateRight animation
+
     @for $i from 1 through $numberOfStars {
+        $animationName: "";
+        $animationDuration: "";
+
+        // Randomly assign animation based on percentages
+        @if $i <=$twinkleCount {
+            $animationName: twinkling;
+            $animationDuration: 3s;
+        }
+
+        @else if $i <=$twinkleCount +$rotateLeftCount {
+            $animationName: rotateStarLeft;
+            $animationDuration: 550s;
+        }
+
+        @else if $i <=$twinkleCount +$rotateLeftCount +$rotateRightCount {
+            $animationName: rotateStarRight;
+            $animationDuration: 550s;
+        }
+
         .star-#{$i} {
             animation: #{$animationName} $animationDuration linear infinite;
-            animation-delay: random() * 5s;
+            animation-delay: random() * 30s;
         }
     }
-}
+} // Kje se zhali vo consola deka + e zalepen do parametrite ama toa se sluchuva koga kje go formatiram dokumentot
+
 
 .space-background {
     position: absolute;
@@ -19,11 +43,9 @@
     fill: transparent;
     z-index: -1;
 
-    @include randomDelayAnimation($numberOfStars: 230, $animationName: twinkling, $animationDuration: 1.5s);
-    @include randomDelayAnimation($numberOfStars: 50, $animationName: moveStarLeft, $animationDuration: 150s);
-    @include randomDelayAnimation($numberOfStars: 50, $animationName: rotateStarRight, $animationDuration: 800s);
-    @include randomDelayAnimation($numberOfStars: 50, $animationName: moveStarRight, $animationDuration: 150s);
-    @include randomDelayAnimation($numberOfStars: 50, $animationName: rotateStarLeft, $animationDuration: 800s);
+    @include randomAnimation(160);
+
+
 
     .stars-scale {
         fill: #ffffff;
@@ -49,7 +71,6 @@
         }
     }
 
-    
     @keyframes rotateStarRight {
         0% {
             transform: rotate(0deg);
@@ -64,33 +85,6 @@
         }
     }
 
-    @keyframes moveStarRight {
-        0% {
-            transform: scale(0.7);
-        }
-
-        50% {
-            transform: scale(1.1);
-        }
-
-        100% {
-            transform: scale(0.7);
-        }
-    }
-
-    @keyframes moveStarLeft {
-        0% {
-            transform: scale(1.7);
-        }
-
-        50% {
-            transform: scale(.1);
-        }
-
-        100% {
-            transform: scale(1.7);
-        }
-    }
 
     @keyframes twinkling {
         0% {
